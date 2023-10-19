@@ -10,3 +10,12 @@ export const getProducts = async () => {
     throw error;
   }
 }
+
+export const getProductById = async (id) => {
+  try {
+    const response = await axios.get(`${apiUrl}/${id}`);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+}

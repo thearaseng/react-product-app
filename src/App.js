@@ -1,4 +1,4 @@
-import logo from './logo.svg';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import CreateProductForm from './components/CreateProductForm'
@@ -6,7 +6,7 @@ import NavBar from "./components/NavBar";
 import ProductList from "./components/ProductList";
 import Products from "./components/Products";
 import { ProductListProvider } from "./context/ProductContext";
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import ProductDetail from "./components/ProductDetail";
 
 function App() {
   return (
@@ -19,7 +19,7 @@ function App() {
             <Route path="/new" element={<CreateProductForm />} />
             <Route path="/" element={<Products />}>
               <Route index element={<ProductList />} />
-              {/*<Route path=":id" element={<Post />} />*/}
+              <Route path=":id" element={<ProductDetail />} />
             </Route>
           </Routes>
         </div>
