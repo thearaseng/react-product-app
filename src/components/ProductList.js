@@ -1,10 +1,24 @@
-import React, { useContext } from 'react';
+import React, {useContext, useEffect} from 'react';
 import ProductTableRow from "./ProductTableRow";
 import { ProductContext } from "../context/ProductContext";
+import { getProducts } from "../services/ApiService"
 
 export default function ProductList() {
 
-  const { products } = useContext(ProductContext);
+  const { products, updateProducts } = useContext(ProductContext);
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const products = await getProducts();
+        updateProducts(products);
+      } catch (error) {
+        console.error('Error fetching products:', error);
+      }
+    }
+
+    fetchData();
+  }, []);
 
   return(
     <table className="table table-striped">
@@ -17,7 +31,7 @@ export default function ProductList() {
       </tr>
       </thead>
       <tbody>
-        {products.map(product => <ProductTableRow id={product.id} {...product} />)}
+        {products.map(product => <ProductTableRow key={product.id} {...product} />)}
       </tbody>
     </table>
   );
