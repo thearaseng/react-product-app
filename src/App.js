@@ -12,7 +12,7 @@ function App() {
   return (
     <Router>
       <ProductListProvider>
-        <div className="container" style={{maxWidth: '700px'}}>
+        <div className="container">
           <NavBar />
           <hr />
           <Routes>
