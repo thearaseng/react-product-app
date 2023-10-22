@@ -1,12 +1,13 @@
 import React, {useEffect, useContext} from "react";
-import {NavLink, useParams} from "react-router-dom";
-import {getProductById} from "../services/ApiService";
+import {NavLink, useParams, useNavigate} from "react-router-dom";
+import {deleteProductById, getProductById} from "../services/ApiService";
 import {ProductContext} from "../context/ProductContext";
 
 export default function ProductDetail() {
 
   const { id } = useParams();
-  const { product, updateProduct } = useContext(ProductContext);
+  const { product, updateProduct, removeProductById } = useContext(ProductContext);
+  const navigate = useNavigate();
 
   useEffect(() => {
 
@@ -14,7 +15,6 @@ export default function ProductDetail() {
       try {
         const product = await getProductById(id);
         updateProduct(product);
-        console.log(product);
       } catch (error) {
         console.error('Error fetching products:', error);
       }
@@ -22,6 +22,16 @@ export default function ProductDetail() {
 
     fetchData();
   }, []);
+
+  async function deleteProduct() {
+    try {
+      await deleteProductById(id);
+      removeProductById(id);
+      navigate("/");
+    } catch (error) {
+      console.error('Error fetching products:', error);
+    }
+  }
 
   return(
     <div>
@@ -48,7 +58,7 @@ export default function ProductDetail() {
             <NavLink className="btn btn-light" to={`/${id}/edit`}>Edit</NavLink>
           </div>
           <div className="col-6 text-end">
-            <button className="btn btn-danger pull-right">Delete</button>
+            <button onClick={deleteProduct} className="btn btn-danger pull-right">Delete</button>
           </div>
         </div>
       </div>

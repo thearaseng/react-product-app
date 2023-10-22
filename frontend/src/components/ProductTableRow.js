@@ -1,6 +1,21 @@
 import { NavLink } from "react-router-dom";
+import {deleteProductById} from "../services/ApiService";
+import {useContext} from 'react';
+import {ProductContext} from "../context/ProductContext";
 
 export default function ProductTableRow ({id, title, price, quantity}) {
+
+  const {removeProductById} = useContext(ProductContext);
+
+  async function deleteProduct() {
+    try {
+      await deleteProductById(id);
+      removeProductById(id);
+
+    } catch (error) {
+      console.error('Error fetching products:', error);
+    }
+  }
 
   return(
     <tr>
@@ -12,7 +27,7 @@ export default function ProductTableRow ({id, title, price, quantity}) {
         <div className="btn-group">
           <NavLink className="btn btn-info" to={`/${id}`}>View</NavLink>
           <NavLink className="btn btn-light" to={`/${id}/edit`}>Edit</NavLink>
-          <button className="btn btn-danger">Delete</button>
+          <button onClick={deleteProduct} className="btn btn-danger">Delete</button>
         </div>
       </td>
     </tr>
