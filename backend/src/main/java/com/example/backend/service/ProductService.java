@@ -1,6 +1,6 @@
-package com.example.lab12backend.service;
+package com.example.backend.service;
 
-import com.example.lab12backend.model.Product;
+import com.example.backend.model.Product;
 
 import java.util.List;
 

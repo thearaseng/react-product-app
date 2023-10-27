@@ -1,8 +1,8 @@
-package com.example.lab12backend.service.impl;
+package com.example.backend.service.impl;
 
-import com.example.lab12backend.model.Product;
-import com.example.lab12backend.repository.ProductRepository;
-import com.example.lab12backend.service.ProductService;
+import com.example.backend.model.Product;
+import com.example.backend.repository.ProductRepository;
+import com.example.backend.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
