@@ -23,6 +23,13 @@ export default function ProductList() {
 
   return(
     <div>
+      <nav aria-label="breadcrumb">
+        <ol className="breadcrumb">
+          <li className="breadcrumb-item">
+            <NavLink to="/">Products</NavLink>
+          </li>
+        </ol>
+      </nav>
       <table className="table table-striped">
         <thead>
         <tr>

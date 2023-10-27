@@ -35,6 +35,16 @@ export default function ProductDetail() {
 
   return(
     <div>
+      <nav aria-label="breadcrumb">
+        <ol className="breadcrumb">
+          <li className="breadcrumb-item">
+            <NavLink to="/">Products</NavLink>
+          </li>
+          <li className="breadcrumb-item">
+            <NavLink active to={`/${id}`}>{id}</NavLink>
+          </li>
+        </ol>
+      </nav>
       <h4 className="text-center mb-5 mt-5">Product Info: {id}</h4>
       <table className="table">
         <tbody>
