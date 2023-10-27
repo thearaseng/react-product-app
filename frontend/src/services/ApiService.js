@@ -1,6 +1,8 @@
 import axios from "axios";
 
-const apiUrl = 'http://localhost:8080/api/products';
+const baseURL = process.env.REACT_APP_API_BASE_URL;
+
+const apiUrl = `${baseURL}/api/products`;
 
 export const getProducts = async () => {
   try {
